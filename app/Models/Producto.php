@@ -17,4 +17,19 @@ class Producto extends Model
         'precio',
         'stock',
     ];
+
+    public function movimientos()
+    {
+        return $this->hasMany(Movimiento::class);
+    }
+
+    public function categorias()
+    {
+        return $this->belongsToMany(
+            Categoria::class,
+            'producto_categoria',
+            'producto_id',
+            'categoria_id'
+        );
+    }
 }

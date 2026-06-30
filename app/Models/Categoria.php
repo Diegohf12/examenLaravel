@@ -15,4 +15,14 @@ class Categoria extends Model
         'nombre',
         'descripcion',
     ];
+
+    public function productos()
+    {
+        return $this->belongsToMany(
+            Producto::class,
+            'producto_categoria',
+            'categoria_id',
+            'producto_id'
+        );
+    }
 }
