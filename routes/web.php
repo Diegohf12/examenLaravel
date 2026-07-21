@@ -1,11 +1,21 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-
-Route::get('/', function () {
-    return view('welcome');
-});
+use Illuminate\Support\Facades\Auth;
 
 Auth::routes();
 
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::redirect('/home', '/');
+
+Route::get('/productos', function () {
+    return view('productos.index');
+})->middleware('auth');
+
+Route::get('/categorias', function () {
+    return view('categorias.index');
+})->middleware('auth');
+
+Route::get('/proveedores', function () {
+    return view('proveedores.index');
+})->middleware('auth');
